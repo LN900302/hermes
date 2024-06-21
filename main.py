@@ -18,6 +18,7 @@ URLS = [
 # Stocker les articles existants pour chaque URL
 existing_items = {url: [] for url in URLS}
 
+
 def check_new_items():
     new_items = []
     for url in URLS:
@@ -52,7 +53,31 @@ def send_email_alert(new_items):
         server.login(sender, password)
         server.sendmail(sender, receiver, msg.as_string())
 
+def display_current_items():
+    current_items = []
+    for url in URLS:
+        response = requests.get(url)
+        soup = BeautifulSoup(response.content, 'html.parser')
+
+        # Adapter cette ligne en fonction de la structure HTML du site
+        items = soup.find_all('div', class_='product-item')
+
+        for item in items:
+            item_name = item.find('h2').text  # Adapter en fonction de la structure HTML
+            current_items.append((url, item_name))
+    
+    return current_items
+
 st.title('Surveillance des Nouveaux Articles')
+
+if st.button('Vérifier les articles actuels'):
+    current_items = display_current_items()
+    if current_items:
+        st.write('Articles actuellement détectés:')
+        for item in current_items:
+            st.write(f"{item[1]} (URL: {item[0]})")
+    else:
+        st.write("Aucun article détecté.")
 
 if st.button('Lancer la Surveillance'):
     st.write('Surveillance en cours...')
