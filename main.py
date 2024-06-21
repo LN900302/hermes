@@ -86,4 +86,4 @@ if st.button('Lancer la Surveillance'):
         if new_items:
             st.write(f"Nouveaux articles trouvés: {', '.join([item[1] for item in new_items])}")
             send_email_alert(new_items)
-        time.sleep(60)  # Vérifier toutes les 60 secondes
+        time.sleep(120)  # Vérifier toutes les 2 minutes
