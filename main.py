@@ -11,8 +11,8 @@ load_dotenv()
 
 # Liste des URL à surveiller
 URLS = [
-    'https://www.example.com/new-arrivals-1',
-    'https://www.example.com/new-arrivals-2'
+    'https://www.hermes.com/fr/fr/category/femme/sacs-et-petite-maroquinerie/sacs-et-pochettes/#|',
+    'https://www.hermes.com/be/fr/category/femme/sacs-et-petite-maroquinerie/sacs-et-pochettes/#|'
 ]
 
 # Stocker les articles existants pour chaque URL
